@@ -1,0 +1,76 @@
+cabal-version:      3.0
+name:               nmn-cell
+version:            0.1.0.0
+synopsis:           Cell simulation synthesizing Nicotinamide Mononucleotide (NMN) with a Brick TUI
+description:        A biochemical simulation of cellular NMN (Nicotinamide Mononucleotide)
+                    and NAD+ metabolism with an interactive Brick terminal user interface.
+license:            MIT
+license-file:       LICENSE
+author:             NMN Simulation Team
+maintainer:         user@example.com
+category:           Science, Simulation, TUI
+build-type:         Simple
+extra-doc-files:    README.md
+
+common common-options
+    ghc-options:        -Wall
+                        -Wcompat
+                        -Widentities
+                        -Wincomplete-record-updates
+                        -Wincomplete-uni-patterns
+                        -Wmissing-export-lists
+                        -Wmissing-home-modules
+                        -Wpartial-fields
+                        -Wredundant-constraints
+                        -threaded
+                        -rtsopts
+                        -with-rtsopts=-N
+    default-language:   GHC2021
+    default-extensions:
+        OverloadedStrings
+        RecordWildCards
+        DeriveGeneric
+        DerivingStrategies
+        GeneralizedNewtypeDeriving
+        TemplateHaskell
+        LambdaCase
+
+library
+    import:             common-options
+    hs-source-dirs:     src
+    exposed-modules:
+        NMN.Types
+        NMN.Enzymes
+        NMN.Pathways
+        NMN.Simulation
+    build-depends:
+        base >= 4.14 && < 5,
+        containers >= 0.6,
+        mtl >= 2.2,
+        text >= 1.2,
+        time >= 1.9
+
+executable nmn-cell-tui
+    import:             common-options
+    main-is:            Main.hs
+    hs-source-dirs:     tui
+    other-modules:
+        UI.Types
+        UI.Attributes
+        UI.Draw
+        UI.Events
+        UI.App
+    build-depends:
+        base >= 4.14 && < 5,
+        nmn-cell,
+        brick >= 2.0 && < 3.0,
+        vty >= 6.0,
+        vty-crossplatform >= 0.2,
+        microlens >= 0.4,
+        microlens-th >= 0.4,
+        microlens-mtl >= 0.2,
+        text >= 1.2,
+        vector >= 0.12,
+        containers >= 0.6,
+        mtl >= 2.2
+
