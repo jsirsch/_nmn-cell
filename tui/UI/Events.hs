@@ -5,6 +5,7 @@ module UI.Events
 import Brick.Types (BrickEvent(..), EventM)
 import Brick.Main (halt)
 import qualified Graphics.Vty as V
+import Control.Monad.State (get, gets, modify)
 import Lens.Micro ((^.), (%~), (.~))
 import qualified Data.Text as T
 
