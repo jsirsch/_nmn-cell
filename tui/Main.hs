@@ -6,7 +6,6 @@ import Control.Concurrent (forkIO, threadDelay)
 import Control.Monad (forever)
 import Brick.BChan (newBChan, writeBChan)
 import Brick.Main (customMain)
-import qualified Graphics.Vty as V
 import qualified Graphics.Vty.CrossPlatform as VCP
 import qualified Graphics.Vty.Config as VConfig
 

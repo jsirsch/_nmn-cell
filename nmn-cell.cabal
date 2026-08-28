@@ -22,9 +22,6 @@ common common-options
                         -Wmissing-home-modules
                         -Wpartial-fields
                         -Wredundant-constraints
-                        -threaded
-                        -rtsopts
-                        -with-rtsopts=-N
     default-language:   GHC2021
     default-extensions:
         OverloadedStrings
@@ -52,6 +49,9 @@ library
 
 executable nmn-cell-tui
     import:             common-options
+    ghc-options:        -threaded
+                        -rtsopts
+                        -with-rtsopts=-N
     main-is:            Main.hs
     hs-source-dirs:     tui
     other-modules:

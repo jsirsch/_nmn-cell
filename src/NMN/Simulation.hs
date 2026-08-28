@@ -59,7 +59,7 @@ stepSimulation dt state@CellState{..} =
 
 -- | Generate log alerts on significant biochemical shifts
 generateAlerts :: MetabolitePool -> MetabolitePool -> PathwayDelta -> [Text]
-generateAlerts oldPool newPool PathwayDelta{..} =
+generateAlerts oldPool newPool _ =
     let alerts0 = []
         alerts1 = if nam oldPool > 5.0 && nam newPool <= 5.0
                   then "⚠️ Low Nicotinamide (NAM): Salvage pathway substrate depleting." : alerts0
@@ -102,7 +102,7 @@ toggleEnzyme :: EnzymeType -> CellState -> CellState
 toggleEnzyme etype state@CellState{..} =
     let modifyE e = e { isEnabled = not (isEnabled e) }
         e' = updateEnzymeRegistry etype modifyE enzymes
-        statusStr e = if isEnabled (getEnzyme etype e') then "ENABLED" else "DISABLED"
+        statusStr reg = if isEnabled (getEnzyme etype reg) then "ENABLED" else "DISABLED"
         msg = "🔌 Enzyme " <> T.pack (show etype) <> " " <> statusStr e' <> "."
     in state { enzymes = e', recentLogs = take 12 (msg : recentLogs) }
 

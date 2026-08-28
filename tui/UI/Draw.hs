@@ -4,7 +4,7 @@ module UI.Draw
 
 import Brick.Types (Widget)
 import Brick.Widgets.Core
-import Brick.Widgets.Border (borderWithLabel, hBorder, vBorder)
+import Brick.Widgets.Border (borderWithLabel, hBorder)
 import Brick.Widgets.Border.Style (unicode)
 import qualified Data.Text as T
 import Numeric (showFFloat)
@@ -117,31 +117,31 @@ drawPathwaySchematic cs =
         padLeftRight 1 $
             vBox
                 [ hBox [ str "Salvage:  "
-                       , withAttr substrateAttr (str "[NAM] (" <> str (formatFloat 1 (nam p)) <> " μM)")
+                       , withAttr substrateAttr (str ("[NAM] (" <> formatFloat 1 (nam p) <> " μM)"))
                        , str " + "
-                       , withAttr substrateAttr (str "[PRPP] (" <> str (formatFloat 1 (prpp p)) <> " μM)")
+                       , withAttr substrateAttr (str ("[PRPP] (" <> formatFloat 1 (prpp p) <> " μM)"))
                        , str " ──[ "
-                       , withAttr fluxActiveAttr (str "NAMPT: " <> str vNAMPTStr)
+                       , withAttr fluxActiveAttr (str ("NAMPT: " <> vNAMPTStr))
                        , str " ]──► "
                        , withAttr nmnTargetAttr (str "[ NMN ]")
                        ]
                 , hBox [ str "NR Kinase:"
-                       , withAttr substrateAttr (str "[NR]  (" <> str (formatFloat 1 (nr p)) <> " μM)")
+                       , withAttr substrateAttr (str ("[NR]  (" <> formatFloat 1 (nr p) <> " μM)"))
                        , str " + "
-                       , withAttr atpAttr (str "[ATP]  (" <> str (formatFloat 0 (atp p)) <> " μM)")
+                       , withAttr atpAttr (str ("[ATP]  (" <> formatFloat 0 (atp p) <> " μM)"))
                        , str " ──[ "
-                       , withAttr fluxActiveAttr (str "NRK1:  " <> str vNRK1Str)
+                       , withAttr fluxActiveAttr (str ("NRK1:  " <> vNRK1Str))
                        , str " ]──► "
-                       , withAttr nmnTargetAttr (str "(" <> str (formatFloat 1 (nmn p)) <> " μM)")
+                       , withAttr nmnTargetAttr (str ("(" <> formatFloat 1 (nmn p) <> " μM)"))
                        ]
                 , str "                                                               │"
                 , hBox [ str "                                                       + [ATP] │ [ "
-                       , withAttr fluxActiveAttr (str "NMNAT: " <> str vNMNATStr)
+                       , withAttr fluxActiveAttr (str ("NMNAT: " <> vNMNATStr))
                        , str " ]"
                        ]
                 , str "                                                               ▼"
                 , hBox [ str "                                                       "
-                       , withAttr nadAttr (str "[ NAD+ ] (" <> str (formatFloat 1 (nadPlus p)) <> " μM)")
+                       , withAttr nadAttr (str ("[ NAD+ ] (" <> formatFloat 1 (nadPlus p) <> " μM)"))
                        ]
                 , str "                                                               │"
                 , hBox [ str "    ◄──────────── CD38 / SIRTs / PARPs ("
@@ -309,7 +309,7 @@ drawFooter st =
             , str " Quit"
             ]
         , padTop (Pad 1) $
-            withAttr subtitleAttr (str "Status: " <+> str (T.unpack msg))
+            withAttr subtitleAttr (str ("Status: " <> T.unpack msg))
         ]
 
 -- | Format floating point number to N decimal places

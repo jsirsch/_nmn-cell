@@ -20,7 +20,7 @@ module UI.Attributes
     ) where
 
 import Brick.AttrMap (AttrMap, attrMap, AttrName, attrName)
-import Brick.Util (fg, on, style)
+import Brick.Util (fg, on)
 import qualified Graphics.Vty as V
 
 titleAttr :: AttrName
@@ -73,21 +73,21 @@ unselectedTabAttr = attrName "unselectedTab"
 
 theMap :: AttrMap
 theMap = attrMap V.defAttr
-    [ (titleAttr,           fg V.brightCyan `style` V.bold)
+    [ (titleAttr,           fg V.brightCyan `V.withStyle` V.bold)
     , (subtitleAttr,        fg V.cyan)
-    , (headerAttr,          fg V.yellow `style` V.bold)
-    , (nmnTargetAttr,       fg V.brightYellow `style` V.bold)
-    , (nadAttr,             fg V.brightBlue `style` V.bold)
-    , (atpAttr,             fg V.brightMagenta `style` V.bold)
+    , (headerAttr,          fg V.yellow `V.withStyle` V.bold)
+    , (nmnTargetAttr,       fg V.brightYellow `V.withStyle` V.bold)
+    , (nadAttr,             fg V.brightBlue `V.withStyle` V.bold)
+    , (atpAttr,             fg V.brightMagenta `V.withStyle` V.bold)
     , (substrateAttr,       fg V.green)
     , (borderHighlightAttr, fg V.brightCyan)
-    , (fluxActiveAttr,      fg V.brightGreen `style` V.bold)
+    , (fluxActiveAttr,      fg V.brightGreen `V.withStyle` V.bold)
     , (fluxMutedAttr,       fg V.white)
-    , (statusOkAttr,        fg V.green `style` V.bold)
-    , (statusWarnAttr,      fg V.brightRed `style` V.bold)
+    , (statusOkAttr,        fg V.green `V.withStyle` V.bold)
+    , (statusWarnAttr,      fg V.brightRed `V.withStyle` V.bold)
     , (alertLogAttr,        fg V.yellow)
-    , (keyBindingAttr,      fg V.brightWhite `style` V.bold)
-    , (selectedTabAttr,     (V.black `on` V.brightCyan) `style` V.bold)
+    , (keyBindingAttr,      fg V.brightWhite `V.withStyle` V.bold)
+    , (selectedTabAttr,     (V.black `on` V.brightCyan) `V.withStyle` V.bold)
     , (unselectedTabAttr,   fg V.white)
     ]
 
